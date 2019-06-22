@@ -85,7 +85,7 @@ namespace Tavisca.Bootcamp.LanguageBasics.Exercise1
                 }else {
                     return -1;
                 }
-                // Process finished for first operand missing ?
+                // Process finished for FIRST operand missing ?
 
             }else if(questionMarkIndex==1){
                 //Console.WriteLine("missing number is Second");
@@ -122,10 +122,40 @@ namespace Tavisca.Bootcamp.LanguageBasics.Exercise1
                 }else {
                     return -1;
                 }
-                // Process finished for first operand missing ?
+                // Process finished for SECOND operand missing ?
 
             }else if(questionMarkIndex==2){
                 //Console.WriteLine("missing number is Third");
+                // Now we retieve the number missing!
+                number[1]= Int32.Parse(num[1]);
+                number[0]= Int32.Parse(num[0]);
+
+                number[2] = number[0]*number[1]; // multiplication to get actual result
+                
+                temp = number[2].ToString();
+
+                char[] temporary = temp.ToCharArray();
+                char[] orignal = num[2].ToCharArray();
+            
+                // let's replace ? with the actual result.
+                for(int i=0; i<orignal.Length; i++){
+                    if(orignal[i]=='?'){
+                        orignal[i]=temporary[i];
+                        result= (int)Char.GetNumericValue(temporary[i]); // storing the missing digit in result
+                    }
+                }
+                
+
+                //now let's compare the numbers orignal and temporary
+                num[2] = new String(orignal);
+                temp = new String(temporary);
+                if(String.Equals(num[2],temp)){
+                    return result; // returning the missing digit
+                }else {
+                    return -1;
+                }
+                // Process finished for first operand missing ?
+
             }
 
             return 1;
