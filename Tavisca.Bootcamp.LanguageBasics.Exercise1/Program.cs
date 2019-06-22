@@ -85,10 +85,45 @@ namespace Tavisca.Bootcamp.LanguageBasics.Exercise1
                 }else {
                     return -1;
                 }
-                // end of this if statement
+                // Process finished for first operand missing ?
 
             }else if(questionMarkIndex==1){
                 //Console.WriteLine("missing number is Second");
+                // Now we retieve the number missing!
+                number[0]= Int32.Parse(num[0]);
+                number[2]= Int32.Parse(num[2]);
+
+                number[1] = number[2]%number[0];
+                if(number[1]!=0){
+                    return -1;
+                }else
+                {
+                    number[1] = number[2]/number[0];
+                }
+                temp = number[1].ToString();
+
+                char[] temporary = temp.ToCharArray();
+                char[] orignal = num[1].ToCharArray();
+            
+                // let's replace ? with the actual result.
+                for(int i=0; i<orignal.Length; i++){
+                    if(orignal[i]=='?'){
+                        orignal[i]=temporary[i];
+                        result= (int)Char.GetNumericValue(temporary[i]); // storing the missing digit in result
+                    }
+                }
+                
+
+                //now let's compare the numbers orignal and temporary
+                num[1] = new String(orignal);
+                temp = new String(temporary);
+                if(String.Equals(num[1],temp)){
+                    return result; // returning the missing digit
+                }else {
+                    return -1;
+                }
+                // Process finished for first operand missing ?
+
             }else if(questionMarkIndex==2){
                 //Console.WriteLine("missing number is Third");
             }
