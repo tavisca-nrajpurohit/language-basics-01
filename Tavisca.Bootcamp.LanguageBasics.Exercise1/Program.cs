@@ -11,7 +11,7 @@ namespace Tavisca.Bootcamp.LanguageBasics.Exercise1
             Test("42*?7=1974", 4);
             Test("42*?47=1974", -1);
             Test("2*12?=247", -1);
-            //Console.ReadKey(true);
+            Console.ReadKey(true);
         }
 
         private static void Test(string args, int expected)
@@ -22,10 +22,20 @@ namespace Tavisca.Bootcamp.LanguageBasics.Exercise1
 
         public static int FindDigit(string equation)
         {
+            /*
+            I have solved the problem in the following manner :
+            1) extract the operands
+            2) find which one has the missing digit
+            3) find the actual number that would make the equation work as expected
+            4) replace the missing digit by comparing the string to actual result
+            5) return the missing digit if the result matches the operand after replacing the missing digit
+             */
+
+
             // extracting the numbers out of the equation.
             string[] num = new String[3];
             int[] number = new int[3];
-            int questionMarkIndex= -1;
+            int questionMarkIndex= -1; // to store which operand has the missing digit.
             int index=0;
             int result=-1; // to store the character that is to be replaced by ?
             string temp; // to store the actual retrieved number that has the 'question mark'
@@ -37,11 +47,9 @@ namespace Tavisca.Bootcamp.LanguageBasics.Exercise1
                     num[index] += equation[i];
                 }
             }
-            /* checking the extration:
-            Console.WriteLine("one:"+num[0]+" two:"+num[1]+" Three:"+num[2]);
-            */
             
             // now let's find question mark index, to check which number has tha missing digit!
+            // and store the information in the variable questionMarkIndex
             if(num[0].Contains('?')){
                 questionMarkIndex = 0;
             }else if(num[1].Contains('?')){
